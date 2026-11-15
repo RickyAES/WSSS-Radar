@@ -52,7 +52,7 @@ async function retrieve(key){
   }
   return { configured:true, provider:'aviationstack', kind:'flight_status_metadata', flightDate:date, fetchedAt:new Date().toISOString(), partial:good.length!==2, count:byId.size, flights:[...byId.values()].slice(0,200) };
 }
-export default async function handler(req,res){
+module.exports=async function handler(req,res){
   if(req.method!=='GET')return res.status(405).json({error:'GET only'});
   res.setHeader('Content-Type','application/json');
   res.setHeader('Cache-Control','public, s-maxage=86400, stale-while-revalidate=300');
